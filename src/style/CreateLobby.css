@@ -1,5 +1,6 @@
 .create-lobby-form {
   display: flex;
+  justify-content: center;
   background: lightgray;
   width: 500px;
   height: 600px;
