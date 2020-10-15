@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Formik, useField, Form } from 'formik';
 import * as Yup from 'yup';
+import Card from './Card';
+import '../style/CreateLobby.css';
 
 const CustomTextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
@@ -38,11 +40,12 @@ const CreateLobby = () => {
   }, [currentCard]);
 
   return (
-    <div>
+    <div className="create-lobby-form">
       <Formik
         initialValues={{
           name: '',
           specialPower: '',
+          game: '',
         }}
         validationSchema={Yup.object({
           name: Yup.string()
@@ -55,12 +58,22 @@ const CreateLobby = () => {
               'Invalid Special Power'
             )
             .required('Required'),
+          game: Yup.string()
+            .oneOf(
+              [
+                'League of Legends',
+                'CS:GO',
+                'Escape From Tarkov',
+                'Among Us',
+                'Valorant',
+                'other',
+              ],
+              'Invalid Game'
+            )
+            .required('Required'),
         })}
         onSubmit={(values, { setSubmitting, resetForm }) => {
-          // console.log(JSON.stringify(values.name, null, 2));
-          // setCards(cards.concat(JSON.stringify(values.name, null, 2)));
           setCurrentCard(values);
-          // setCards((cards) => cards.concat(currentCard));
           resetForm();
           setSubmitting(false);
           console.log(cards);
@@ -68,13 +81,15 @@ const CreateLobby = () => {
       >
         {(props) => (
           <Form>
-            <h1>Sign Up</h1>
-            <CustomTextInput
-              label="Name"
-              name="name"
-              type="text"
-              placeholder="Frank"
-            />
+            <div>Create a Lobby</div>
+            <CustomSelect label="game:" name="game">
+              <option value="League of Legends">League of Legends</option>
+              <option value="CS:GO">CS:GO</option>
+              <option value="Escape From Tarkov">Escape From Tarkov</option>
+              <option value="Among Us">Among Us</option>
+              <option value="Valorant">Valorant</option>
+              <option value="other">other</option>
+            </CustomSelect>
             <CustomSelect label="Special Power" name="specialPower">
               <option value="">Select a Special Power</option>
               <option value="flight">flight</option>
@@ -82,10 +97,15 @@ const CreateLobby = () => {
               <option value="wealthy bat guy">wealthy bat guy</option>
               <option value="other">other</option>
             </CustomSelect>
+            <CustomTextInput
+              label="Name"
+              name="name"
+              type="text"
+              placeholder="Frank"
+            />
             <button type="submit">
               {props.isSubmitting ? 'Loading...' : 'Submit'}
             </button>
-            {/* <pre>{JSON.stringify(props.values, null, 2)}</pre> */}
           </Form>
         )}
       </Formik>

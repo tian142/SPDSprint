@@ -1,0 +1,6 @@
+.create-lobby-form {
+  display: flex;
+  background: lightgray;
+  width: 500px;
+  height: 600px;
+}
