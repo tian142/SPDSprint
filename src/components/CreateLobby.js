@@ -1,6 +1,15 @@
 import React, { useEffect } from 'react';
 import { Formik, useField, Form } from 'formik';
 import * as Yup from 'yup';
+import { makeStyles } from '@material-ui/core/styles';
+// import classes from '*.module.css';
+
+const useStyles = makeStyles({
+  createLobbyForm: {
+    zIndex: -10,
+    background: 'pink',
+  },
+});
 
 const CustomTextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
@@ -47,12 +56,14 @@ const CreateLobby = ({
   currentLobby,
   setCurrentLobby,
 }) => {
+  const classes = useStyles();
+
   useEffect(() => {
     setLobbies((lobbies) => lobbies.concat(currentLobby));
   }, [currentLobby]);
 
   return (
-    <div className="create-lobby-form">
+    <div className={classes.createLobbyForm}>
       <Formik
         initialValues={{
           game: '',

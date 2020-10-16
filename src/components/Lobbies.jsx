@@ -5,7 +5,6 @@ const Lobbies = ({ lobbies }) => {
     <div>
       {lobbies.map((lobby) => (
         <>
-          Here are the lobbies:
           <div key={Math.random() * 1}>{lobby.game}</div>
           <div key={Math.random() * 2}>{lobby.lobbySize}</div>
           <div key={Math.random() * 3}>{lobby.language}</div>
