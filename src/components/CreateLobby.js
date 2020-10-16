@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Formik, useField, Form } from 'formik';
 import * as Yup from 'yup';
-import '../style/CreateLobby.css';
 
 const CustomTextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);

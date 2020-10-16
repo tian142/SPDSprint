@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CreateLobby from './components/CreateLobby';
-import './style/App.css';
 import Lobbies from './components/Lobbies';
+import TopNav from './components/TopNav';
 
 const App = () => {
   const [lobbies, setLobbies] = useState([]);
@@ -9,6 +9,7 @@ const App = () => {
 
   return (
     <>
+      <TopNav className="hi" />
       <CreateLobby
         lobbies={lobbies}
         setLobbies={setLobbies}
