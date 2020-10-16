@@ -6,7 +6,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   createLobbyForm: {
-    zIndex: -10,
     background: 'pink',
   },
 });

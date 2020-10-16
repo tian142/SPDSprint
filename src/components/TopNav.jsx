@@ -15,11 +15,9 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
+import zIndex from '@material-ui/core/styles/zIndex';
 
 const useStyles = makeStyles((theme) => ({
-  // appBar: {
-  //   zIndex: 10 ,
-  // },
   grow: {
     flexGrow: 1,
     // zIndex: 1,
@@ -168,7 +166,7 @@ export default function TopNav() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static" className={classes.appBar} position="relative">
+      <AppBar position="relative">
         <Toolbar>
           <IconButton
             edge="start"

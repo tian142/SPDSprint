@@ -8,16 +8,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import TopNav from './components/TopNav';
 
 const useStyles = makeStyles({
-  topGrid: {
-    zindex: 1,
-  },
   leftGrid: {
     zIndex: 0,
+    position: 'relative',
   },
   centerGrid: {
     zIndex: 1,
     background: 'lightBlue',
     marginLeft: 240,
+    position: 'relative',
   },
   bgRed: {
     background: 'pink',
@@ -31,14 +30,22 @@ const App = () => {
 
   return (
     <Grid container>
-      <Grid item xs={12} className={classes.topGrid}>
-        <TopNav />
+      <Grid item xs={12}>
+        <TopNav className={classes.topGrid} />
       </Grid>
-      <Grid item xs={3} className={classes.leftGrid}>
+      <Grid
+        item
+        xs={9}
+        className={classes.centerGrid}
+        container
+        direction="column"
+        justify="flex-start"
+        alignItems="center"
+      >
         <SideNav />
-      </Grid>
-      <Grid item xs={9} className={classes.centerGrid}>
-        <GameDisplay />
+        <Grid item>
+          <GameDisplay />
+        </Grid>
         <CreateLobby
           lobbies={lobbies}
           setLobbies={setLobbies}
