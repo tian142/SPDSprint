@@ -15,12 +15,10 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
-import zIndex from '@material-ui/core/styles/zIndex';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
-    // zIndex: 1,
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -47,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   searchIcon: {
-    padding: theme.spacing(0, 2),
+    padding: theme.spacing(0, 1.5),
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
@@ -82,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TopNav() {
+export default function TopNav({ setLobbyCreating }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -193,7 +191,11 @@ export default function TopNav() {
             />
           </div>
           <div className={classes.grow} />
-          <Button variant="contained" color="secondary">
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => setLobbyCreating(true)}
+          >
             Create Lobby
           </Button>
           <div className={classes.sectionDesktop}>
