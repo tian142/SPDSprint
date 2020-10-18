@@ -76,16 +76,7 @@ const App = () => {
           <Lobbies lobbies={lobbies} />
         </Grid>
       </Grid>
-      {/* <CreateLobbyPopUp
-        className={classes.topGrid}
-        lobbyCreating={lobbyCreating}
-        onClose={() => setLobbyCreating(false)}
-      >
-
-      </CreateLobbyPopUp> */}
       <Modal
-        // aria-labelledby="transition-modal-title"
-        // aria-describedby="transition-modal-description"
         className={classes.modal}
         open={lobbyCreating}
         onClose={() => setLobbyCreating(false)}

@@ -1,74 +1,26 @@
 import React, { useEffect } from 'react';
-import { Formik, useField, Form } from 'formik';
-import * as Yup from 'yup';
 import { makeStyles } from '@material-ui/core/styles';
-import CreateLobbyGame from './CreateLobbyGame';
+import { Formik, Form, Field } from 'formik';
+import {
+  Button,
+  LinearProgress,
+  MenuItem,
+  FormControl,
+} from '@material-ui/core';
+import { TextField } from 'formik-material-ui';
+import Box from '@material-ui/core/Box';
+import * as yup from 'yup';
 
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
+import { gameTitles } from '../data/gameSelection';
 
-const useStyles = makeStyles({
-  createLobbyForm: {
-    background: 'pink',
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    minWidth: 200,
   },
-  root: {
-    minWidth: 275,
+  selectEmpty: {
+    marginTop: theme.spacing(2),
   },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-});
-
-const CustomTextInput = ({ label, ...props }) => {
-  const [field, meta] = useField(props);
-  return (
-    <>
-      <label htmlFor={props.id || props.name}>{label}</label>
-      <input className="text-input" {...field} {...props} />
-      {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
-      ) : null}
-    </>
-  );
-};
-const CustomNumInput = ({ label, ...props }) => {
-  const [field, meta] = useField(props);
-  return (
-    <>
-      <label htmlFor={props.id || props.name}>{label}</label>
-      <input className="number-input" {...field} {...props} />
-      {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
-      ) : null}
-    </>
-  );
-};
-
-const CustomSelect = ({ label, ...props }) => {
-  const [field, meta] = useField(props);
-
-  return (
-    <>
-      <label htmlFor={props.id || props.name}>{label}</label>
-      <select {...field} {...props} />
-      {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
-      ) : null}
-    </>
-  );
-};
+}));
 
 const CreateLobby = ({
   lobbies,
@@ -77,103 +29,125 @@ const CreateLobby = ({
   setCurrentLobby,
 }) => {
   const classes = useStyles();
-
   useEffect(() => {
     setLobbies((lobbies) => lobbies.concat(currentLobby));
   }, [currentLobby]);
-
   return (
-    <div className={classes.createLobbyForm}>
-      <Formik
-        initialValues={{
-          game: '',
-          lobbySize: 2,
-          language: 'En',
-          lobbyNotes: '',
-          mic: '',
-        }}
-        validationSchema={Yup.object({
-          game: Yup.string().required('Required'),
-          lobbySize: Yup.number()
-            .required()
-            .positive('Lobby size must be at least 2')
-            .integer()
-            .min(2, 'Lobby size must be at least 2')
-            .max(15, 'Max lobby size is 15'),
-          language: Yup.string().required('Required'),
-          mic: Yup.string()
-            .oneOf(
-              ['Mandatory', 'Perfered', 'No Mic'],
-              'Please Select Preference'
-            )
-            .required('Required'),
-          lobbyNotes: Yup.string()
-            .min(1, 'Must be at least 1 characters')
-            .max(140, 'Must be 140 characters or less')
-            .required('Required'),
-        })}
-        onSubmit={(values, { setSubmitting, resetForm }) => {
+    <Formik
+      initialValues={{
+        gameSelect: '',
+        lobbySize: 2,
+        language: 'English',
+        micPreference: '',
+        lobbyNotes: '',
+      }}
+      validationSchema={yup.object({
+        gameSelect: yup.string().required('Required'),
+        lobbySize: yup
+          .number()
+          .integer()
+          .required('Required')
+          .min(2, 'Lobby size must be at least 2')
+          .max(15, 'Max lobby size is 15'),
+        language: yup.string().required('Required'),
+        micPreference: yup.string().required('Required'),
+        lobbyNotes: yup
+          .string()
+          .max(140, 'Notes must be 140 characters or less')
+          .required('Required'),
+      })}
+      onSubmit={(values, { setSubmitting }) => {
+        setTimeout(() => {
           setCurrentLobby(values);
-          resetForm();
           setSubmitting(false);
-          console.log(lobbies);
-        }}
-      >
+        }, 500);
+      }}
+    >
+      {({ submitForm, isSubmitting }) => (
         <Form>
-          <Card className={classes.root}>
-            <CardContent>
-              <Typography variant="h5" component="h2" align="center">
-                Create a Lobby
-              </Typography>
-              <Divider variant="middle" />
-              <CreateLobbyGame />
-              <CustomSelect label="game:" name="game">
-                <option value="">Select a Game</option>
-                <option value="League of Legends">League of Legends</option>
-                <option value="CS:GO">CS:GO</option>
-                <option value="Escape From Tarkov">Escape From Tarkov</option>
-                <option value="Among Us">Among Us</option>
-                <option value="Valorant">Valorant</option>
-                <option value="other">other</option>
-              </CustomSelect>
-              <CustomNumInput
-                label="Size"
-                name="lobbySize"
-                type="number"
-                placeholder="1"
-              />
-              <CustomSelect label="Language" name="language">
-                <option value="">Lobby Language</option>
-                <option value="English">English</option>
-                <option value="Spanish">Spanish</option>
-                <option value="Portuguese">Portuguese</option>
-                <option value="Russian">Russian</option>
-                <option value="Turkish">Turkish</option>
-                <option value="Japanese">Japanese</option>
-                <option value="Chinese">Chinese</option>
-                <option value="Other">Other</option>
-              </CustomSelect>
-              <CustomSelect label="Mic" name="mic">
-                <option value="">Mic Preference</option>
-                <option value="Mandatory">Mandatory</option>
-                <option value="Perfered">Perfered</option>
-                <option value="No Mic">No Mic</option>
-              </CustomSelect>
-              <CustomTextInput
-                label="Lobby Notes"
-                name="lobbyNotes"
-                type="text"
-                placeholder="(Max 140 Characters)"
-              />
-            </CardContent>
-            <CardActions>
-              <button type="submit">Submit</button>
-              {/* <Button size="small">Create</Button> */}
-            </CardActions>
-          </Card>
+          <Box margin={1}>
+            <FormControl className={classes.formControl}>
+              <Field
+                component={TextField}
+                name="gameSelect"
+                label="Select a Game"
+                select
+                margin="normal"
+                // helperText=""
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              >
+                {gameTitles.map((option) => (
+                  <MenuItem key={option.title} value={option.title}>
+                    {option.title}
+                  </MenuItem>
+                ))}
+              </Field>
+            </FormControl>
+          </Box>
+          <Box margin={1}>
+            <Field
+              component={TextField}
+              type="number"
+              label="Lobby Size"
+              name="lobbySize"
+            />
+          </Box>
+          <Box margin={1}>
+            <Field
+              component={TextField}
+              type="text"
+              label="Lobby Language"
+              name="language"
+            />
+          </Box>
+          <Box margin={1}>
+            <FormControl className={classes.formControl}>
+              {/* <InputLabel>Age</InputLabel> */}
+              <Field
+                component={TextField}
+                name="micPreference"
+                label="Mic Preference"
+                select
+                margin="normal"
+                // helperText=""
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              >
+                <MenuItem value="Mandatory">Mandatory</MenuItem>
+                <MenuItem value="Preferred">Preferred</MenuItem>
+                <MenuItem value="No Mic">No Mic</MenuItem>
+              </Field>
+            </FormControl>
+          </Box>
+
+          <Box margin={1}>
+            <Field
+              component={TextField}
+              type="text"
+              label="Lobby Notes"
+              name="lobbyNotes"
+              variant="outlined"
+              multiline
+              rows="3"
+            />
+          </Box>
+          <Box margin={1}>
+            <Button
+              variant="contained"
+              color="primary"
+              disabled={isSubmitting}
+              onClick={submitForm}
+            >
+              Submit
+            </Button>
+          </Box>
+          {isSubmitting && <LinearProgress />}
         </Form>
-      </Formik>
-    </div>
+      )}
+    </Formik>
   );
 };
 
