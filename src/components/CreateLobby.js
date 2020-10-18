@@ -27,6 +27,7 @@ const CreateLobby = ({
   setLobbies,
   currentLobby,
   setCurrentLobby,
+  setLobbyCreating,
 }) => {
   const classes = useStyles();
   useEffect(() => {
@@ -59,6 +60,7 @@ const CreateLobby = ({
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           setCurrentLobby(values);
+          setLobbyCreating(false);
           setSubmitting(false);
         }, 500);
       }}

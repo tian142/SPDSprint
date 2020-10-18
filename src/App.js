@@ -39,9 +39,10 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    outline: 'none',
+    borderRadius: 5,
   },
 }));
 
@@ -49,7 +50,7 @@ const App = () => {
   const classes = useStyles();
   const [lobbies, setLobbies] = useState([]);
   const [currentLobby, setCurrentLobby] = useState('');
-  const [lobbyCreating, setLobbyCreating] = useState(true);
+  const [lobbyCreating, setLobbyCreating] = useState(false);
 
   return (
     <>
@@ -94,6 +95,7 @@ const App = () => {
               setLobbies={setLobbies}
               currentLobby={currentLobby}
               setCurrentLobby={setCurrentLobby}
+              setLobbyCreating={setLobbyCreating}
             />
           </div>
         </Fade>
