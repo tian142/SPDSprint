@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Formik, Form, Field } from 'formik';
 import {
@@ -30,9 +30,6 @@ const CreateLobby = ({
   setLobbyCreating,
 }) => {
   const classes = useStyles();
-  useEffect(() => {
-    setLobbies((lobbies) => lobbies.concat(currentLobby));
-  }, [currentLobby]);
   return (
     <Formik
       initialValues={{
@@ -59,7 +56,7 @@ const CreateLobby = ({
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          setCurrentLobby(values);
+          setLobbies((lobbies) => lobbies.concat(values));
           setLobbyCreating(false);
           setSubmitting(false);
         }, 500);
@@ -118,9 +115,15 @@ const CreateLobby = ({
                   shrink: true,
                 }}
               >
-                <MenuItem value="Mandatory">Mandatory</MenuItem>
-                <MenuItem value="Preferred">Preferred</MenuItem>
-                <MenuItem value="No Mic">No Mic</MenuItem>
+                <MenuItem key="Mandatory" value="Mandatory">
+                  Mandatory
+                </MenuItem>
+                <MenuItem key="Preferred" value="Preferred">
+                  Preferred
+                </MenuItem>
+                <MenuItem key="No Mic" value="No Mic">
+                  No Mic
+                </MenuItem>
               </Field>
             </FormControl>
           </Box>
