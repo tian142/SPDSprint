@@ -10,8 +10,7 @@ import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 
 const useStyles = makeStyles({
   root: {
-    // minWidth: 150,
-    maxWidth: 180,
+    Width: '180px',
   },
 });
 
@@ -33,7 +32,7 @@ export default function Lobbies({ lobbies }) {
   return (
     <>
       {lobbies.map((lobby) => (
-        <Grid item sm={3}>
+        <Grid item xs={12} sm={4} md={3} lg={2}>
           <Card className={classes.root}>
             <CardContent>
               <Typography>{lobby.gameSelect}</Typography>
