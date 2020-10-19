@@ -25,9 +25,10 @@ const useStyles = makeStyles((theme) => ({
   },
   centerGrid: {
     zIndex: 1,
-    background: 'lightBlue',
+    // background: 'lightBlue',
     marginLeft: 240,
     position: 'relative',
+    padding: '20px',
   },
   bgRed: {
     background: 'pink',
@@ -43,12 +44,28 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
     outline: 'none',
     borderRadius: 5,
+    width: 380,
   },
 }));
 
 const App = () => {
   const classes = useStyles();
-  const [lobbies, setLobbies] = useState([]);
+  const [lobbies, setLobbies] = useState([
+    {
+      gameSelect: 'test game 1',
+      lobbySize: 2,
+      language: 'Enmg',
+      micPreference: 'yes pls',
+      lobbyNotes: 'notes notes',
+    },
+    {
+      gameSelect: 'test game 1',
+      lobbySize: 2,
+      language: 'Enmg',
+      micPreference: 'yes pls',
+      lobbyNotes: 'notes notes',
+    },
+  ]);
   const [currentLobby, setCurrentLobby] = useState('');
   const [lobbyCreating, setLobbyCreating] = useState(false);
 
@@ -71,10 +88,10 @@ const App = () => {
           // alignItems="center"
         >
           <SideNav />
-          <Grid item>
-            <GameDisplay />
+          {/* <Grid item><GameDisplay /></Grid> */}
+          <Grid container spacing={2} direction="row">
+            <Lobbies lobbies={lobbies} />
           </Grid>
-          <Lobbies lobbies={lobbies} />
         </Grid>
       </Grid>
       <Modal
@@ -91,7 +108,6 @@ const App = () => {
           <div className={classes.paper}>
             <CreateLobby
               className={classes.topGrid}
-              lobbies={lobbies}
               setLobbies={setLobbies}
               currentLobby={currentLobby}
               setCurrentLobby={setCurrentLobby}

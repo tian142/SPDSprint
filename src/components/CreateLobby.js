@@ -6,29 +6,30 @@ import {
   LinearProgress,
   MenuItem,
   FormControl,
+  Grid,
+  Typography,
+  Divider,
 } from '@material-ui/core';
 import { TextField } from 'formik-material-ui';
-import Box from '@material-ui/core/Box';
 import * as yup from 'yup';
 
 import { gameTitles } from '../data/gameSelection';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
-    minWidth: 200,
+    minWidth: 210,
   },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
+  typography: {
+    borderBottom: ' 2px solid purple',
+    paddingBottom: '6px',
+    margin: '5px 0px 15px 0px',
+  },
+  gridRow: {
+    marginBottom: '15px',
   },
 }));
 
-const CreateLobby = ({
-  lobbies,
-  setLobbies,
-  currentLobby,
-  setCurrentLobby,
-  setLobbyCreating,
-}) => {
+const CreateLobby = ({ setLobbies, setLobbyCreating }) => {
   const classes = useStyles();
   return (
     <Formik
@@ -64,92 +65,109 @@ const CreateLobby = ({
     >
       {({ submitForm, isSubmitting }) => (
         <Form>
-          <Box margin={1}>
-            <FormControl className={classes.formControl}>
+          <Grid container>
+            <Grid item sm={12}>
+              <Typography
+                variant="h5"
+                align="center"
+                gutterBottom
+                className={classes.typography}
+              >
+                Create a Lobby
+              </Typography>
+              {/* <Divider variant="fullWidth" className={classes.divider} /> */}
+            </Grid>
+            <Grid item sm={8} className={classes.gridRow}>
+              <FormControl className={classes.formControl}>
+                <Field
+                  component={TextField}
+                  name="gameSelect"
+                  label="Select a Game"
+                  select
+                  // margin="normal"
+                  // helperText=""
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                >
+                  {gameTitles.map((option) => (
+                    <MenuItem key={option.title} value={option.title}>
+                      {option.title}
+                    </MenuItem>
+                  ))}
+                </Field>
+              </FormControl>
+            </Grid>
+            <Grid item sm={4}>
               <Field
                 component={TextField}
-                name="gameSelect"
-                label="Select a Game"
-                select
-                margin="normal"
-                // helperText=""
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              >
-                {gameTitles.map((option) => (
-                  <MenuItem key={option.title} value={option.title}>
-                    {option.title}
+                type="number"
+                label="Lobby Size"
+                name="lobbySize"
+                // fullWidth
+              />
+            </Grid>
+            <Grid item sm={8} className={classes.gridRow}>
+              <FormControl className={classes.formControl}>
+                {/* <InputLabel>Age</InputLabel> */}
+                <Field
+                  component={TextField}
+                  name="micPreference"
+                  label="Mic Preference"
+                  select
+                  // margin="normal"
+                  // helperText=""
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                >
+                  <MenuItem key="Mandatory" value="Mandatory">
+                    Mandatory
                   </MenuItem>
-                ))}
-              </Field>
-            </FormControl>
-          </Box>
-          <Box margin={1}>
-            <Field
-              component={TextField}
-              type="number"
-              label="Lobby Size"
-              name="lobbySize"
-            />
-          </Box>
-          <Box margin={1}>
-            <Field
-              component={TextField}
-              type="text"
-              label="Lobby Language"
-              name="language"
-            />
-          </Box>
-          <Box margin={1}>
-            <FormControl className={classes.formControl}>
-              {/* <InputLabel>Age</InputLabel> */}
+                  <MenuItem key="Preferred" value="Preferred">
+                    Preferred
+                  </MenuItem>
+                  <MenuItem key="No Mic" value="No Mic">
+                    No Mic
+                  </MenuItem>
+                </Field>
+              </FormControl>
+            </Grid>
+            <Grid item sm={4}>
               <Field
                 component={TextField}
-                name="micPreference"
-                label="Mic Preference"
-                select
-                margin="normal"
-                // helperText=""
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              >
-                <MenuItem key="Mandatory" value="Mandatory">
-                  Mandatory
-                </MenuItem>
-                <MenuItem key="Preferred" value="Preferred">
-                  Preferred
-                </MenuItem>
-                <MenuItem key="No Mic" value="No Mic">
-                  No Mic
-                </MenuItem>
-              </Field>
-            </FormControl>
-          </Box>
+                type="text"
+                label="Lobby Language"
+                name="language"
+              />
+            </Grid>
 
-          <Box margin={1}>
-            <Field
-              component={TextField}
-              type="text"
-              label="Lobby Notes"
-              name="lobbyNotes"
-              variant="outlined"
-              multiline
-              rows="3"
-            />
-          </Box>
-          <Box margin={1}>
-            <Button
-              variant="contained"
-              color="primary"
-              disabled={isSubmitting}
-              onClick={submitForm}
-            >
-              Submit
-            </Button>
-          </Box>
-          {isSubmitting && <LinearProgress />}
+            <Grid item sm={12} className={classes.gridRow}>
+              <Field
+                fullWidth
+                component={TextField}
+                type="text"
+                label="Lobby Notes"
+                name="lobbyNotes"
+                variant="outlined"
+                multiline
+                rows="3"
+              />
+            </Grid>
+            <Grid container alignItems="center" justify="center">
+              <Grid item>
+                <Button
+                  variant="contained"
+                  disabled={isSubmitting}
+                  onClick={submitForm}
+                  color="primary"
+                >
+                  Create
+                </Button>
+              </Grid>
+            </Grid>
+            {isSubmitting && <LinearProgress />}
+          </Grid>
         </Form>
       )}
     </Formik>
