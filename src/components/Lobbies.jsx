@@ -5,7 +5,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Grid, Paper } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
+import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 
 const useStyles = makeStyles({
   root: {
@@ -13,6 +14,18 @@ const useStyles = makeStyles({
     maxWidth: 180,
   },
 });
+
+const showLobbySize = (size) => {
+  if (size <= 5) {
+    let container = [];
+    for (let i = 0; i < size; i++) {
+      container.push(<PersonOutlineIcon />);
+    }
+    return container;
+  } else {
+    return `${size} players`;
+  }
+};
 
 export default function Lobbies({ lobbies }) {
   const classes = useStyles();
@@ -24,7 +37,10 @@ export default function Lobbies({ lobbies }) {
           <Card className={classes.root}>
             <CardContent>
               <Typography>{lobby.gameSelect}</Typography>
-              <Typography gutterBottom>{lobby.lobbySize}</Typography>
+              <Typography gutterBottom>
+                {showLobbySize(lobby.lobbySize)}
+                {/* {lobby.lobbySize} */}
+              </Typography>
               <Typography>{lobby.language}</Typography>
               <Typography variant="body2" component="p">
                 {lobby.micPreference}

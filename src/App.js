@@ -50,22 +50,7 @@ const useStyles = makeStyles((theme) => ({
 
 const App = () => {
   const classes = useStyles();
-  const [lobbies, setLobbies] = useState([
-    {
-      gameSelect: 'test game 1',
-      lobbySize: 2,
-      language: 'Enmg',
-      micPreference: 'yes pls',
-      lobbyNotes: 'notes notes',
-    },
-    {
-      gameSelect: 'test game 1',
-      lobbySize: 2,
-      language: 'Enmg',
-      micPreference: 'yes pls',
-      lobbyNotes: 'notes notes',
-    },
-  ]);
+  const [lobbies, setLobbies] = useState([]);
   const [currentLobby, setCurrentLobby] = useState('');
   const [lobbyCreating, setLobbyCreating] = useState(false);
 
