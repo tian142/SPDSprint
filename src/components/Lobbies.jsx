@@ -7,10 +7,15 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Grid } from '@material-ui/core';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
-
+import HeadsetMicIcon from '@material-ui/icons/HeadsetMic';
+import MicNoneIcon from '@material-ui/icons/MicNone';
+import MicOffIcon from '@material-ui/icons/MicOff';
 const useStyles = makeStyles({
   root: {
     Width: '180px',
+  },
+  mic: {
+    height: 30,
   },
 });
 
@@ -26,6 +31,16 @@ const showLobbySize = (size) => {
   }
 };
 
+const showMicIcon = (micPreference) => {
+  if (micPreference === 'Mandatory') {
+    return <HeadsetMicIcon />;
+  } else if (micPreference === 'Preferred') {
+    return <MicNoneIcon />;
+  } else {
+    return <MicOffIcon />;
+  }
+};
+
 export default function Lobbies({ lobbies }) {
   const classes = useStyles();
 
@@ -38,11 +53,11 @@ export default function Lobbies({ lobbies }) {
               <Typography>{lobby.gameSelect}</Typography>
               <Typography gutterBottom>
                 {showLobbySize(lobby.lobbySize)}
-                {/* {lobby.lobbySize} */}
               </Typography>
               <Typography>{lobby.language}</Typography>
-              <Typography variant="body2" component="p">
-                {lobby.micPreference}
+              <Typography variant="body2" component="p" className={classes.mic}>
+                {`Mic: ${lobby.micPreference}`}
+                {showMicIcon(lobby.micPreference)}
               </Typography>
               <Typography variant="body2" component="p">
                 {lobby.lobbyNotes}

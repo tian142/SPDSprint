@@ -9,6 +9,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 
 const drawerWidth = 240;
 
@@ -27,6 +29,9 @@ const useStyles = makeStyles({
   drawerContainer: {
     overflow: 'auto',
   },
+  friendIcon: {
+    marginRight: 30,
+  },
 });
 
 export default function ClippedDrawer() {
@@ -44,22 +49,24 @@ export default function ClippedDrawer() {
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+            {['Friends', 'Friend1', 'Friend2', 'Friend3'].map((text, index) => (
               <ListItem button key={text}>
-                <ListItemIcon>
+                {/* <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
+                </ListItemIcon> */}
+                <PeopleOutlineIcon className={classes.friendIcon} />
                 <ListItemText primary={text} />
               </ListItem>
             ))}
           </List>
           <Divider variant="middle" />
           <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
+            {['Recommended Lobbies', 'lobby1', 'lobby2'].map((text, index) => (
               <ListItem button key={text}>
-                <ListItemIcon>
+                {/* <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
+                </ListItemIcon> */}
+                <MeetingRoomIcon className={classes.friendIcon} />
                 <ListItemText primary={text} />
               </ListItem>
             ))}
