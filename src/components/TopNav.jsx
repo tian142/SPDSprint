@@ -141,7 +141,7 @@ export default function TopNav({ setLobbyCreating }) {
         <p>Messages</p>
       </MenuItem>
       <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
+        <IconButton aria-label="show 11 new notifications" color="default">
           <Badge badgeContent={11} color="secondary">
             <NotificationsIcon />
           </Badge>
@@ -164,7 +164,7 @@ export default function TopNav({ setLobbyCreating }) {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="relative">
+      <AppBar position="relative" color="default">
         <Toolbar>
           <IconButton
             edge="start"
