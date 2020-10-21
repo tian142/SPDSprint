@@ -1,5 +1,21 @@
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#a533ff',
+      main: '#8400ED',
+    },
+  },
+});
+
+ReactDOM.render(
+  <ThemeProvider theme={theme}>
+    <App />
+  </ThemeProvider>,
+
+  document.getElementById('root')
+);

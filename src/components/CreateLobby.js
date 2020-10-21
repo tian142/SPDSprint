@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 210,
   },
   typography: {
-    borderBottom: ' 2px solid purple',
+    borderBottom: ' 2px solid #8400ed',
     paddingBottom: '6px',
     margin: '5px 0px 15px 0px',
   },

@@ -20,21 +20,27 @@ const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
+  customizeToolbar: {
+    boxShadow: '0px 1px 5px rgba(0, 0, 0, 0.20)',
+    maxHeight: 50,
   },
   title: {
     display: 'none',
+    marginTop: theme.spacing(-1.65),
+    marginLeft: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
+    cursor: 'pointer',
   },
   search: {
+    height: 30,
+    marginTop: theme.spacing(-1.65),
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    backgroundColor: '#F4F4F4',
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      backgroundColor: fade(theme.palette.grey.A200, 0.25),
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
@@ -57,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
     color: 'inherit',
   },
   inputInput: {
+    marginTop: theme.spacing(-0.3),
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
@@ -66,13 +73,19 @@ const useStyles = makeStyles((theme) => ({
       width: '20ch',
     },
   },
+  lobbyButton: {
+    marginTop: theme.spacing(-1.65),
+    height: 30,
+  },
   sectionDesktop: {
+    marginTop: theme.spacing(-1.65),
     display: 'none',
     [theme.breakpoints.up('md')]: {
       display: 'flex',
     },
   },
   sectionMobile: {
+    marginTop: theme.spacing(-1.65),
     display: 'flex',
     [theme.breakpoints.up('md')]: {
       display: 'none',
@@ -134,7 +147,7 @@ export default function TopNav({ setLobbyCreating }) {
     >
       <MenuItem>
         <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
+          <Badge badgeContent={4} color="primary">
             <MailIcon />
           </Badge>
         </IconButton>
@@ -142,7 +155,7 @@ export default function TopNav({ setLobbyCreating }) {
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="default">
-          <Badge badgeContent={11} color="secondary">
+          <Badge badgeContent={11} color="primary">
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -164,19 +177,17 @@ export default function TopNav({ setLobbyCreating }) {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="relative" color="default">
+      <AppBar
+        className={classes.customizeToolbar}
+        position="relative"
+        color="white"
+        elevation={0}
+      >
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography className={classes.title} variant="h5" noWrap>
             InstaLobby.gg
           </Typography>
+          <div className={classes.grow} />
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -192,20 +203,21 @@ export default function TopNav({ setLobbyCreating }) {
           </div>
           <div className={classes.grow} />
           <Button
+            className={classes.lobbyButton}
             variant="contained"
-            color="secondary"
+            color="primary"
             onClick={() => setLobbyCreating(true)}
           >
             Create Lobby
           </Button>
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
+              <Badge badgeContent={4} color="primary">
                 <MailIcon />
               </Badge>
             </IconButton>
             <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
+              <Badge badgeContent={17} color="primary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>

@@ -24,6 +24,8 @@ const useStyles = makeStyles({
     zIndex: -3,
   },
   drawerPaper: {
+    backgroundColor: '#F4F4F4',
+    border: 'none',
     width: drawerWidth,
   },
   drawerContainer: {

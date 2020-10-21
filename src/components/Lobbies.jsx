@@ -5,14 +5,15 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Grid } from '@material-ui/core';
+import { Divider, Grid } from '@material-ui/core';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import HeadsetMicIcon from '@material-ui/icons/HeadsetMic';
 import MicNoneIcon from '@material-ui/icons/MicNone';
 import MicOffIcon from '@material-ui/icons/MicOff';
+
 const useStyles = makeStyles({
   root: {
-    Width: '180px',
+    minWidth: 225,
   },
   mic: {
     height: 30,
@@ -50,15 +51,21 @@ export default function Lobbies({ lobbies }) {
         <Grid item xs={12} sm={4} md={3} lg={2}>
           <Card className={classes.root}>
             <CardContent>
-              <Typography>{lobby.gameSelect}</Typography>
+              <Typography gutterBottom>{lobby.gameSelect}</Typography>
               <Typography gutterBottom>
                 {showLobbySize(lobby.lobbySize)}
               </Typography>
               <Typography>{lobby.language}</Typography>
-              <Typography variant="body2" component="p" className={classes.mic}>
+              <Typography
+                gutterBottom
+                variant="body2"
+                component="p"
+                className={classes.mic}
+              >
                 {`Mic: ${lobby.micPreference}`}
                 {showMicIcon(lobby.micPreference)}
               </Typography>
+              <Divider variant="middle" />
               <Typography variant="body2" component="p">
                 {lobby.lobbyNotes}
               </Typography>
