@@ -12,6 +12,9 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
 const useStyles = makeStyles((theme) => ({
+  testColor: {
+    background: 'purple',
+  },
   topZ: {
     zIndex: 1000,
   },
@@ -61,7 +64,7 @@ const App = () => {
     },
     {
       gameSelect: 'Among Us',
-      lobbySize: 10,
+      lobbySize: 15,
       language: 'Spanish',
       micPreference: 'Mandatory',
       lobbyNotes:
@@ -89,7 +92,7 @@ const App = () => {
         </Grid>
         <Grid
           item
-          xs={9}
+          // xs={9}
           className={classes.centerGrid}
           container
           direction="column"
@@ -97,7 +100,9 @@ const App = () => {
           // alignItems="center"
         >
           <SideNav />
-          {/* <Grid item><GameDisplay /></Grid> */}
+          <Grid item>
+            <GameDisplay />
+          </Grid>
           <Grid container spacing={2} direction="row">
             <Lobbies lobbies={lobbies} />
           </Grid>

@@ -23,20 +23,16 @@ const useStyles = makeStyles({
     marginBottom: 8,
   },
   joinBtn: {
-    // flexGrow: 1,
+    flexGrow: -1,
   },
 });
 
 const showLobbySize = (size) => {
-  if (size <= 5) {
-    let container = [];
-    for (let i = 0; i < size; i++) {
-      container.push(<PersonOutlineIcon />);
-    }
-    return container;
-  } else {
-    return `${size} players`;
+  let container = [];
+  for (let i = 0; i < size; i++) {
+    container.push(<PersonOutlineIcon />);
   }
+  return container;
 };
 
 const showMicIcon = (micPreference) => {
