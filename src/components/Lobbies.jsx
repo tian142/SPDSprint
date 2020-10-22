@@ -13,10 +13,17 @@ import MicOffIcon from '@material-ui/icons/MicOff';
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 225,
+    width: 225,
+    height: 300,
   },
   mic: {
     height: 30,
+  },
+  divider: {
+    marginBottom: 8,
+  },
+  joinBtn: {
+    // flexGrow: 1,
   },
 });
 
@@ -48,7 +55,7 @@ export default function Lobbies({ lobbies }) {
   return (
     <>
       {lobbies.map((lobby) => (
-        <Grid item xs={12} sm={4} md={3} lg={2}>
+        <Grid item>
           <Card className={classes.root}>
             <CardContent>
               <Typography gutterBottom>{lobby.gameSelect}</Typography>
@@ -65,13 +72,15 @@ export default function Lobbies({ lobbies }) {
                 {`Mic: ${lobby.micPreference}`}
                 {showMicIcon(lobby.micPreference)}
               </Typography>
-              <Divider variant="middle" />
+              <Divider className={classes.divider} />
               <Typography variant="body2" component="p">
                 {lobby.lobbyNotes}
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small">Join</Button>
+              <Button size="small" className={classes.joinBtn}>
+                Join
+              </Button>
             </CardActions>
           </Card>
         </Grid>

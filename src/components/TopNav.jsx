@@ -8,13 +8,13 @@ import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
+import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -73,9 +73,14 @@ const useStyles = makeStyles((theme) => ({
       width: '20ch',
     },
   },
-  lobbyButton: {
+  navButton: {
     marginTop: theme.spacing(-1.65),
+    marginRight: 1,
     height: 30,
+    textTransform: 'none',
+  },
+  fillerDiv: {
+    width: 13,
   },
   sectionDesktop: {
     marginTop: theme.spacing(-1.65),
@@ -90,6 +95,11 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
+  },
+  horizDivider: {
+    marginTop: theme.spacing(-1.65),
+    height: 30,
+    width: 1.5,
   },
 }));
 
@@ -203,12 +213,33 @@ export default function TopNav({ setLobbyCreating }) {
           </div>
           <div className={classes.grow} />
           <Button
-            className={classes.lobbyButton}
+            className={classes.navButton}
             variant="contained"
             color="primary"
             onClick={() => setLobbyCreating(true)}
           >
             Create Lobby
+          </Button>
+          <Divider
+            orientation="vertical"
+            // flexItem
+            className={classes.horizDivider}
+            variant="middle"
+          />
+          <Button
+            variant="outlined"
+            color="primary"
+            className={classes.navButton}
+          >
+            Sign In
+          </Button>
+          <div className={classes.fillerDiv}></div>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.navButton}
+          >
+            Sign Up
           </Button>
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">

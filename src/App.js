@@ -50,7 +50,31 @@ const useStyles = makeStyles((theme) => ({
 
 const App = () => {
   const classes = useStyles();
-  const [lobbies, setLobbies] = useState([]);
+  const [lobbies, setLobbies] = useState([
+    {
+      gameSelect: 'League of Legends',
+      lobbySize: 3,
+      language: 'English',
+      micPreference: 'No Mic',
+      lobbyNotes:
+        'Looking for a party of 3 to carry my promos, will be rewarded if we win!',
+    },
+    {
+      gameSelect: 'Among Us',
+      lobbySize: 10,
+      language: 'Spanish',
+      micPreference: 'Mandatory',
+      lobbyNotes:
+        'Looking for people who wont leave if they do not get imposter',
+    },
+    {
+      gameSelect: 'Escape from Tarkov',
+      lobbySize: 2,
+      language: 'Chinese',
+      micPreference: 'Preferred',
+      lobbyNotes: 'Lvl 20+ scav farming run',
+    },
+  ]);
   const [currentLobby, setCurrentLobby] = useState('');
   const [lobbyCreating, setLobbyCreating] = useState(false);
 

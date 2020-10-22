@@ -57,9 +57,9 @@ const CreateLobby = ({ setLobbies, setLobbyCreating }) => {
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          setLobbies((lobbies) => lobbies.concat(values));
           setLobbyCreating(false);
           setSubmitting(false);
+          setLobbies((lobbies) => lobbies.concat(values));
         }, 500);
       }}
     >
@@ -154,6 +154,7 @@ const CreateLobby = ({ setLobbies, setLobbyCreating }) => {
                 rows="3"
               />
             </Grid>
+            {isSubmitting && <LinearProgress color="primary" />}
             <Grid container alignItems="center" justify="center">
               <Grid item>
                 <Button
@@ -166,7 +167,6 @@ const CreateLobby = ({ setLobbies, setLobbyCreating }) => {
                 </Button>
               </Grid>
             </Grid>
-            {isSubmitting && <LinearProgress />}
           </Grid>
         </Form>
       )}
