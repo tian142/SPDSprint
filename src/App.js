@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
+import { Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import TopNav from './components/TopNav';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
 import CreateLobby from './components/CreateLobby';
 import Lobbies from './components/Lobbies';
 import SideNav from './components/SideNav';
 import GameDisplay from './components/GameDisplay';
-import { Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import TopNav from './components/TopNav';
-
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
+import SelectedGame from './components/SelectedGame';
 
 const useStyles = makeStyles((theme) => ({
   testColor: {
@@ -80,6 +80,9 @@ const App = () => {
   ]);
   const [currentLobby, setCurrentLobby] = useState('');
   const [lobbyCreating, setLobbyCreating] = useState(false);
+  const [clickedGameName, setClickedGameName] = useState('');
+  const [clickedGameImg, setClickedGameImg] = useState('');
+  const [clickedGameStat, setClickedGameStat] = useState('');
 
   return (
     <>
@@ -99,9 +102,22 @@ const App = () => {
           // justify="flex-start"
           // alignItems="center"
         >
-          <SideNav />
+          <Grid item xs={false}>
+            <SideNav />
+          </Grid>
           <Grid item>
-            <GameDisplay />
+            <GameDisplay
+              setClickedGameName={setClickedGameName}
+              setClickedGameImg={setClickedGameImg}
+              setClickedGameStat={setClickedGameStat}
+              setLobbyCreating={setLobbyCreating}
+            />
+            <SelectedGame
+              clickedGameName={clickedGameName}
+              clickedGameImg={clickedGameImg}
+              clickedGameStat={clickedGameStat}
+              setLobbyCreating={setLobbyCreating}
+            />
           </Grid>
           <Grid container spacing={2} direction="row">
             <Lobbies lobbies={lobbies} />

@@ -8,7 +8,6 @@ import {
   FormControl,
   Grid,
   Typography,
-  Divider,
 } from '@material-ui/core';
 import { TextField } from 'formik-material-ui';
 import * as yup from 'yup';
@@ -48,7 +47,11 @@ const CreateLobby = ({ setLobbies, setLobbyCreating }) => {
           .required('Required')
           .min(2, 'Lobby size must be at least 2')
           .max(15, 'Max lobby size is 15'),
-        language: yup.string().required('Required'),
+        language: yup
+          .string()
+          .required('Required')
+          .min(2, 'Must be at least 2 characters')
+          .max(10, 'Must be below 10 characters'),
         micPreference: yup.string().required('Required'),
         lobbyNotes: yup
           .string()

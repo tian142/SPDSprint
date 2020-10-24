@@ -27,7 +27,8 @@ const useStyles = makeStyles((theme) => ({
   title: {
     display: 'none',
     marginTop: theme.spacing(-1.65),
-    marginLeft: theme.spacing(2),
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
@@ -36,14 +37,14 @@ const useStyles = makeStyles((theme) => ({
   search: {
     height: 30,
     marginTop: theme.spacing(-1.65),
+    // marginLeft: 0,
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: '#F4F4F4',
     '&:hover': {
       backgroundColor: fade(theme.palette.grey.A200, 0.25),
     },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
+    // marginRight: theme.spacing(2),
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(3),
@@ -190,14 +191,14 @@ export default function TopNav({ setLobbyCreating }) {
       <AppBar
         className={classes.customizeToolbar}
         position="relative"
-        color="white"
+        color="secondary"
         elevation={0}
       >
         <Toolbar>
           <Typography className={classes.title} variant="h5" noWrap>
             InstaLobby.gg
           </Typography>
-          <div className={classes.grow} />
+          {/* <div className={classes.grow} /> */}
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
