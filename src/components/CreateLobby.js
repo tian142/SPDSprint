@@ -26,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
   gridRow: {
     marginBottom: '15px',
   },
+  loading: {
+    marginBottom: '5px',
+  },
 }));
 
 const CreateLobby = ({ setLobbies, setLobbyCreating }) => {
@@ -46,7 +49,7 @@ const CreateLobby = ({ setLobbies, setLobbyCreating }) => {
           .integer()
           .required('Required')
           .min(2, 'Lobby size must be at least 2')
-          .max(15, 'Max lobby size is 15'),
+          .max(10, 'Max lobby size is 10'),
         language: yup
           .string()
           .required('Required')
@@ -55,7 +58,7 @@ const CreateLobby = ({ setLobbies, setLobbyCreating }) => {
         micPreference: yup.string().required('Required'),
         lobbyNotes: yup
           .string()
-          .max(140, 'Notes must be 140 characters or less')
+          .max(130, 'Notes must be 130 characters or less')
           .required('Required'),
       })}
       onSubmit={(values, { setSubmitting }) => {
@@ -124,10 +127,10 @@ const CreateLobby = ({ setLobbies, setLobbyCreating }) => {
                     shrink: true,
                   }}
                 >
-                  <MenuItem key="Mandatory" value="Mandatory">
+                  <MenuItem key="Mic Mandatory" value="Mic Mandatory">
                     Mandatory
                   </MenuItem>
-                  <MenuItem key="Preferred" value="Preferred">
+                  <MenuItem key="Mic Preferred" value="Mic Preferred">
                     Preferred
                   </MenuItem>
                   <MenuItem key="No Mic" value="No Mic">
@@ -157,7 +160,9 @@ const CreateLobby = ({ setLobbies, setLobbyCreating }) => {
                 rows="3"
               />
             </Grid>
-            {isSubmitting && <LinearProgress color="primary" />}
+            <Grid item xs={12} className={classes.loading}>
+              {isSubmitting && <LinearProgress color="primary" />}
+            </Grid>
             <Grid container alignItems="center" justify="center">
               <Grid item>
                 <Button

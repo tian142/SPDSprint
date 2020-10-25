@@ -12,16 +12,6 @@ import GameDisplay from './components/GameDisplay';
 import SelectedGame from './components/SelectedGame';
 
 const useStyles = makeStyles((theme) => ({
-  testColor: {
-    background: 'purple',
-  },
-  topZ: {
-    zIndex: 1000,
-  },
-  topGrid: {
-    zIndex: 0,
-    position: 'relative',
-  },
   leftGrid: {
     zIndex: 0,
     position: 'relative',
@@ -33,15 +23,12 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     padding: '20px',
   },
-  bgRed: {
-    background: 'pink',
-  },
   modal: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  paper: {
+  Modalpaper: {
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
@@ -64,9 +51,9 @@ const App = () => {
     },
     {
       gameSelect: 'Among Us',
-      lobbySize: 15,
+      lobbySize: 10,
       language: 'Spanish',
-      micPreference: 'Mandatory',
+      micPreference: 'Mic Mandatory',
       lobbyNotes:
         'Looking for people who wont leave if they do not get imposter',
     },
@@ -74,34 +61,58 @@ const App = () => {
       gameSelect: 'Escape from Tarkov',
       lobbySize: 2,
       language: 'Chinese',
-      micPreference: 'Preferred',
+      micPreference: 'Mic Preferred',
       lobbyNotes: 'Lvl 20+ scav farming run',
+    },
+    {
+      gameSelect: 'Escape from Tarkov',
+      lobbySize: 2,
+      language: 'Russiandwa',
+      micPreference: 'Mic Preferred',
+      lobbyNotes:
+        'Looking for people who wont leave if they do not get imposterLooking for people who wont leave if they do not get helloo hello hey',
+    },
+    {
+      gameSelect: 'Among Us',
+      lobbySize: 10,
+      language: 'Spanish',
+      micPreference: 'Mic Mandatory',
+      lobbyNotes:
+        'Looking for people who wont leave if they do not get imposter',
+    },
+    {
+      gameSelect: 'Escape from Tarkov',
+      lobbySize: 2,
+      language: 'Chinese',
+      micPreference: 'Mic Preferred',
+      lobbyNotes: 'Lvl 20+ scav farming run',
+    },
+    {
+      gameSelect: 'Escape from Tarkov',
+      lobbySize: 2,
+      language: 'Russiandwa',
+      micPreference: 'Mic Preferred',
+      lobbyNotes:
+        'Looking for people who wont leave if they do not get imposterLooking for people who wont leave if they do not get helloo hello hey',
     },
   ]);
   const [currentLobby, setCurrentLobby] = useState('');
   const [lobbyCreating, setLobbyCreating] = useState(false);
-  const [clickedGameName, setClickedGameName] = useState('');
-  const [clickedGameImg, setClickedGameImg] = useState('');
-  const [clickedGameStat, setClickedGameStat] = useState('');
+  const [clickedGameName, setClickedGameName] = useState('All Lobbies');
+  const [clickedGameImg, setClickedGameImg] = useState(
+    'https://blurbgeek.com/wp-content/uploads/2020/04/10-BEST-ONLINE-MULTIPLAYER-GAMES-FOR-PC-2019.jpg'
+  );
+  const [clickedGameStat, setClickedGameStat] = useState(
+    '5127 Players, 12453 Lobbies'
+  );
 
   return (
     <>
       <Grid container>
         <Grid item xs={12}>
-          <TopNav
-            // className={classes.topGrid}
-            setLobbyCreating={setLobbyCreating}
-          />
+          <TopNav setLobbyCreating={setLobbyCreating} />
         </Grid>
-        <Grid
-          item
-          // xs={9}
-          className={classes.centerGrid}
-          container
-          direction="column"
-          // justify="flex-start"
-          // alignItems="center"
-        >
+        <Grid item className={classes.centerGrid} container direction="column">
           <Grid item xs={false}>
             <SideNav />
           </Grid>
@@ -135,9 +146,8 @@ const App = () => {
         }}
       >
         <Fade in={lobbyCreating}>
-          <div className={classes.paper}>
+          <div className={classes.Modalpaper}>
             <CreateLobby
-              className={classes.topGrid}
               setLobbies={setLobbies}
               currentLobby={currentLobby}
               setCurrentLobby={setCurrentLobby}

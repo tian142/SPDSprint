@@ -1,44 +1,72 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
+// import CardActions from '@material-ui/core/CardActions';
+// import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Divider, Grid } from '@material-ui/core';
+import { Divider, Grid, Tooltip } from '@material-ui/core';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import HeadsetMicIcon from '@material-ui/icons/HeadsetMic';
 import MicNoneIcon from '@material-ui/icons/MicNone';
 import MicOffIcon from '@material-ui/icons/MicOff';
+import FaceIcon from '@material-ui/icons/Face';
 
 const useStyles = makeStyles({
-  root: {
-    width: 225,
-    height: 300,
+  lobbyCard: {
+    width: 300,
+    height: 162,
+    padding: '15px 15px',
+    transition: '70ms',
+    '&:hover': {
+      transform: 'translateY(-5px)',
+      boxShadow: '0px 8px 20px 1px rgba(56, 56, 56, 0.2)',
+    },
   },
-  mic: {
-    height: 30,
+  lobbyMaster: {
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  userIcon: {
+    marginRight: 5,
+  },
+  cardGameName: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+  langMic: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    marginBottom: 8,
   },
   divider: {
     marginBottom: 8,
   },
+  notes: {
+    height: 62,
+  },
+  lobbyActions: {
+    height: 28,
+  },
   joinBtn: {
-    flexGrow: -1,
+    textTransform: 'none',
+    height: 26,
   },
 });
 
 const showLobbySize = (size) => {
   let container = [];
   for (let i = 0; i < size; i++) {
-    container.push(<PersonOutlineIcon />);
+    container.push(<PersonOutlineIcon fontSize="small" />);
   }
   return container;
 };
 
 const showMicIcon = (micPreference) => {
-  if (micPreference === 'Mandatory') {
+  if (micPreference === 'Mic Mandatory') {
     return <HeadsetMicIcon />;
-  } else if (micPreference === 'Preferred') {
+  } else if (micPreference === 'Mic Preferred') {
     return <MicNoneIcon />;
   } else {
     return <MicOffIcon />;
@@ -52,32 +80,46 @@ export default function Lobbies({ lobbies }) {
     <>
       {lobbies.map((lobby) => (
         <Grid item>
-          <Card className={classes.root}>
-            <CardContent>
-              <Typography gutterBottom>{lobby.gameSelect}</Typography>
-              <Typography gutterBottom>
-                {showLobbySize(lobby.lobbySize)}
-              </Typography>
-              <Typography>{lobby.language}</Typography>
-              <Typography
-                gutterBottom
-                variant="body2"
-                component="p"
-                className={classes.mic}
-              >
-                {`Mic: ${lobby.micPreference}`}
-                {showMicIcon(lobby.micPreference)}
-              </Typography>
-              <Divider className={classes.divider} />
-              <Typography variant="body2" component="p">
-                {lobby.lobbyNotes}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small" className={classes.joinBtn}>
-                Join
-              </Button>
-            </CardActions>
+          <Card className={classes.lobbyCard}>
+            <Grid container justify="space-between">
+              <Grid item xs={6} className={classes.lobbyMaster}>
+                <FaceIcon className={classes.userIcon} /> UserName123
+              </Grid>
+              <Grid item xs={6} className={classes.cardGameName}>
+                <Typography>{lobby.gameSelect}</Typography>
+              </Grid>
+              <Grid item xs={8}>
+                <Typography>{showLobbySize(lobby.lobbySize)}</Typography>
+              </Grid>
+
+              <Grid item xs={4}>
+                <div className={classes.langMic}>
+                  <Typography>{lobby.language}</Typography>
+                  <Tooltip title={lobby.micPreference}>
+                    {showMicIcon(lobby.micPreference)}
+                  </Tooltip>
+                </div>
+              </Grid>
+
+              <Grid item xs={12}>
+                <Divider className={classes.divider} />
+              </Grid>
+              <Grid item xs={12} className={classes.notes}>
+                <Typography variant="caption" component="p">
+                  {lobby.lobbyNotes}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} className={classes.lobbyActions}>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  className={classes.joinBtn}
+                  color="primary"
+                >
+                  Join
+                </Button>
+              </Grid>
+            </Grid>
           </Card>
         </Grid>
       ))}
