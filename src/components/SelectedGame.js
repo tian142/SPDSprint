@@ -8,9 +8,9 @@ import {
   InputLabel,
   Select,
   MenuItem,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import React from 'react';
+} from "@material-ui/core"
+import { makeStyles } from "@material-ui/core/styles"
+import React from "react"
 
 const useStyles = makeStyles({
   mainContainer: {
@@ -19,28 +19,28 @@ const useStyles = makeStyles({
   card: {
     width: 200,
     height: 60,
-    background: 'purple',
+    background: "purple",
   },
   cardMedia: {
     height: 90,
-    backgroundSize: '115%',
+    backgroundSize: "115%",
   },
   selectedLeftSide: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   selectedRightSide: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   lobbyFilter: {
     marginTop: -10,
   },
   gameName: {
     fontWeight: 600,
-    margin: '0px 10px 0px 15px ',
+    margin: "0px 10px 0px 15px ",
   },
   gameStat: {
     marginTop: 2,
@@ -52,9 +52,9 @@ const useStyles = makeStyles({
   },
   createBtn: {
     height: 30,
-    textTransform: 'none',
+    textTransform: "none",
   },
-});
+})
 
 const SelectedGame = ({
   clickedGameName,
@@ -62,7 +62,7 @@ const SelectedGame = ({
   clickedGameStat,
   setLobbyCreating,
 }) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <Grid container className={classes.mainContainer} justify="space-between">
@@ -99,7 +99,7 @@ const SelectedGame = ({
         </FormControl>
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
-export default SelectedGame;
+export default SelectedGame

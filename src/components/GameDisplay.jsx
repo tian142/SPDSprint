@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react"
 import {
   Button,
   Card,
@@ -6,14 +6,14 @@ import {
   Divider,
   Grid,
   Typography,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { homeGames } from '../data/homeGames';
+} from "@material-ui/core"
+import { makeStyles } from "@material-ui/core/styles"
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
+import { homeGames } from "../data/homeGames"
 
 const useStyles = makeStyles({
   testa: {
-    background: 'red',
+    background: "red",
   },
   testb: {
     // background: 'blue',
@@ -24,14 +24,15 @@ const useStyles = makeStyles({
     paddingTop: 118,
   },
   testd: {
-    background: 'purple',
+    background: "purple",
   },
   welcome: {
+    marginTop: 30,
     paddingTop: 15,
     height: 150,
   },
   allGameBtn: {
-    textTransform: 'none',
+    textTransform: "none",
     height: 30,
   },
   expandIcon: {
@@ -41,54 +42,54 @@ const useStyles = makeStyles({
     marginBottom: 20,
   },
   gameList: {
-    display: 'flex',
-    padding: ' 29px 30px 1.35rem',
-    justifyContent: ' center',
+    display: "flex",
+    padding: " 29px 30px 1.35rem",
+    justifyContent: " center",
   },
   gameCard: {
-    display: 'flex',
-    position: 'relative',
-    flexDirection: 'column',
-    height: '180px',
-    width: '130px',
-    borderRadius: '10px',
-    background: ' white',
-    boxShadow: '0px 4px 8px 8px rgba(0, 0, 0, 0.2)',
-    transition: '170ms',
-    cursor: 'pointer',
-    '&:hover': {
-      transform: 'translateY(-1rem)',
+    display: "flex",
+    position: "relative",
+    flexDirection: "column",
+    height: "180px",
+    width: "130px",
+    borderRadius: "10px",
+    background: " white",
+    boxShadow: "0px 4px 8px 8px rgba(0, 0, 0, 0.2)",
+    transition: "170ms",
+    cursor: "pointer",
+    "&:hover": {
+      transform: "translateY(-1rem)",
     },
 
-    '&:hover ~ &': {
-      transform: 'translateX(25px)',
+    "&:hover ~ &": {
+      transform: "translateX(25px)",
     },
-    '&:not(:first-child)': {
-      marginLeft: '-25px',
+    "&:not(:first-child)": {
+      marginLeft: "-25px",
     },
   },
   cardMedia: {
     height: 100,
-    paddingTop: '100%',
+    paddingTop: "100%",
   },
   hoveredGame: {
     fontWeight: 550,
   },
-});
+})
 
 const Gamedisplay = ({
   setClickedGameName,
   setClickedGameImg,
   setClickedGameStat,
 }) => {
-  const [hoveredGame, sethoveredGame] = useState('');
-  const classes = useStyles();
+  const [hoveredGame, sethoveredGame] = useState("")
+  const classes = useStyles()
 
   const onGameSelect = (game) => {
-    setClickedGameName(game.title);
-    setClickedGameImg(game.wallImg);
-    setClickedGameStat(game.stat);
-  };
+    setClickedGameName(game.title)
+    setClickedGameImg(game.wallImg)
+    setClickedGameStat(game.stat)
+  }
 
   return (
     <>
@@ -127,7 +128,7 @@ const Gamedisplay = ({
       </div>
       <Divider className={classes.botDivider} />
     </>
-  );
-};
+  )
+}
 
-export default Gamedisplay;
+export default Gamedisplay

@@ -1,43 +1,43 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
+import React from "react"
+import { makeStyles } from "@material-ui/core/styles"
+import Card from "@material-ui/core/Card"
 // import CardActions from '@material-ui/core/CardActions';
 // import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { Divider, Grid, Tooltip } from '@material-ui/core';
-import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
-import HeadsetMicIcon from '@material-ui/icons/HeadsetMic';
-import MicNoneIcon from '@material-ui/icons/MicNone';
-import MicOffIcon from '@material-ui/icons/MicOff';
-import FaceIcon from '@material-ui/icons/Face';
+import Button from "@material-ui/core/Button"
+import Typography from "@material-ui/core/Typography"
+import { Divider, Grid, Tooltip } from "@material-ui/core"
+import PersonOutlineIcon from "@material-ui/icons/PersonOutline"
+import HeadsetMicIcon from "@material-ui/icons/HeadsetMic"
+import MicNoneIcon from "@material-ui/icons/MicNone"
+import MicOffIcon from "@material-ui/icons/MicOff"
+import FaceIcon from "@material-ui/icons/Face"
 
 const useStyles = makeStyles({
   lobbyCard: {
     width: 300,
     height: 162,
-    padding: '15px 15px',
-    transition: '70ms',
-    '&:hover': {
-      transform: 'translateY(-5px)',
-      boxShadow: '0px 8px 20px 1px rgba(56, 56, 56, 0.2)',
+    padding: "15px 15px",
+    transition: "70ms",
+    "&:hover": {
+      transform: "translate(-3px, -3px)",
+      boxShadow: "0px 8px 20px 1px rgba(56, 56, 56, 0.2)",
     },
   },
   lobbyMaster: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
     marginBottom: 10,
   },
   userIcon: {
     marginRight: 5,
   },
   cardGameName: {
-    display: 'flex',
-    justifyContent: 'flex-end',
+    display: "flex",
+    justifyContent: "flex-end",
   },
   langMic: {
-    display: 'flex',
-    justifyContent: 'flex-end',
+    display: "flex",
+    justifyContent: "flex-end",
     marginBottom: 8,
   },
   divider: {
@@ -50,31 +50,31 @@ const useStyles = makeStyles({
     height: 28,
   },
   joinBtn: {
-    textTransform: 'none',
+    textTransform: "none",
     height: 26,
   },
-});
+})
 
 const showLobbySize = (size) => {
-  let container = [];
+  let container = []
   for (let i = 0; i < size; i++) {
-    container.push(<PersonOutlineIcon fontSize="small" />);
+    container.push(<PersonOutlineIcon fontSize="small" />)
   }
-  return container;
-};
+  return container
+}
 
 const showMicIcon = (micPreference) => {
-  if (micPreference === 'Mic Mandatory') {
-    return <HeadsetMicIcon />;
-  } else if (micPreference === 'Mic Preferred') {
-    return <MicNoneIcon />;
+  if (micPreference === "Mic Mandatory") {
+    return <HeadsetMicIcon />
+  } else if (micPreference === "Mic Preferred") {
+    return <MicNoneIcon />
   } else {
-    return <MicOffIcon />;
+    return <MicOffIcon />
   }
-};
+}
 
 export default function Lobbies({ lobbies }) {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <>
@@ -124,5 +124,5 @@ export default function Lobbies({ lobbies }) {
         </Grid>
       ))}
     </>
-  );
+  )
 }

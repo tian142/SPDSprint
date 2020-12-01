@@ -1,100 +1,101 @@
-import React from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import Button from '@material-ui/core/Button';
-import { Divider } from '@material-ui/core';
+import React from "react"
+import { fade, makeStyles } from "@material-ui/core/styles"
+import AppBar from "@material-ui/core/AppBar"
+import Toolbar from "@material-ui/core/Toolbar"
+import IconButton from "@material-ui/core/IconButton"
+import Typography from "@material-ui/core/Typography"
+import InputBase from "@material-ui/core/InputBase"
+import Badge from "@material-ui/core/Badge"
+import MenuItem from "@material-ui/core/MenuItem"
+import Menu from "@material-ui/core/Menu"
+import SearchIcon from "@material-ui/icons/Search"
+import AccountCircle from "@material-ui/icons/AccountCircle"
+import MailIcon from "@material-ui/icons/Mail"
+import NotificationsIcon from "@material-ui/icons/Notifications"
+import MoreIcon from "@material-ui/icons/MoreVert"
+import Button from "@material-ui/core/Button"
+import { Divider } from "@material-ui/core"
 
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
   customizeToolbar: {
-    boxShadow: '0px 1px 5px rgba(0, 0, 0, 0.20)',
+    boxShadow: "0px 1px 5px rgba(0, 0, 0, 0.20)",
     maxHeight: 50,
+    position: "fixed",
   },
   title: {
-    display: 'none',
+    display: "none",
     marginTop: theme.spacing(-1.65),
     marginLeft: theme.spacing(3),
     marginRight: theme.spacing(3),
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
+    [theme.breakpoints.up("sm")]: {
+      display: "block",
     },
-    cursor: 'pointer',
+    cursor: "pointer",
   },
   search: {
     height: 30,
     marginTop: theme.spacing(-1.65),
     // marginLeft: 0,
-    position: 'relative',
+    position: "relative",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: '#F4F4F4',
-    '&:hover': {
+    backgroundColor: "#F4F4F4",
+    "&:hover": {
       backgroundColor: fade(theme.palette.grey.A200, 0.25),
     },
     // marginRight: theme.spacing(2),
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(3),
-      width: 'auto',
+      width: "auto",
     },
   },
   searchIcon: {
     padding: theme.spacing(0, 1.5),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   inputRoot: {
-    color: 'inherit',
+    color: "inherit",
   },
   inputInput: {
     marginTop: theme.spacing(-0.3),
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "20ch",
     },
   },
   navButton: {
     marginTop: theme.spacing(-1.65),
     marginRight: 1,
     height: 30,
-    textTransform: 'none',
+    textTransform: "none",
   },
   fillerDiv: {
     width: 13,
   },
   sectionDesktop: {
     marginTop: theme.spacing(-1.65),
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
     },
   },
   sectionMobile: {
     marginTop: theme.spacing(-1.65),
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
+    display: "flex",
+    [theme.breakpoints.up("md")]: {
+      display: "none",
     },
   },
   horizDivider: {
@@ -102,57 +103,57 @@ const useStyles = makeStyles((theme) => ({
     height: 30,
     width: 1.5,
   },
-}));
+}))
 
 export default function TopNav({ setLobbyCreating }) {
-  const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const classes = useStyles()
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const isMenuOpen = Boolean(anchorEl)
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
 
   const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
 
   const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
+    setMobileMoreAnchorEl(null)
+  }
 
   const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
+    setAnchorEl(null)
+    handleMobileMenuClose()
+  }
 
   const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
+    setMobileMoreAnchorEl(event.currentTarget)
+  }
 
-  const menuId = 'primary-search-account-menu';
+  const menuId = "primary-search-account-menu"
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
       id={menuId}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
-  );
+  )
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const mobileMenuId = "primary-search-account-menu-mobile"
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
       id={mobileMenuId}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
@@ -184,7 +185,7 @@ export default function TopNav({ setLobbyCreating }) {
         <p>Profile</p>
       </MenuItem>
     </Menu>
-  );
+  )
 
   return (
     <div className={classes.grow}>
@@ -209,7 +210,7 @@ export default function TopNav({ setLobbyCreating }) {
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
-              inputProps={{ 'aria-label': 'search' }}
+              inputProps={{ "aria-label": "search" }}
             />
           </div>
           <div className={classes.grow} />
@@ -281,5 +282,5 @@ export default function TopNav({ setLobbyCreating }) {
       {renderMobileMenu}
       {renderMenu}
     </div>
-  );
+  )
 }

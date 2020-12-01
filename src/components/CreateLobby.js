@@ -1,6 +1,6 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Formik, Form, Field } from 'formik';
+import React from "react"
+import { makeStyles } from "@material-ui/core/styles"
+import { Formik, Form, Field } from "formik"
 import {
   Button,
   LinearProgress,
@@ -8,65 +8,65 @@ import {
   FormControl,
   Grid,
   Typography,
-} from '@material-ui/core';
-import { TextField } from 'formik-material-ui';
-import * as yup from 'yup';
+} from "@material-ui/core"
+import { TextField } from "formik-material-ui"
+import * as yup from "yup"
 
-import { gameTitles } from '../data/gameSelection';
+import { gameTitles } from "../data/gameSelection"
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
     minWidth: 210,
   },
   typography: {
-    borderBottom: ' 2px solid #8400ed',
-    paddingBottom: '6px',
-    margin: '5px 0px 15px 0px',
+    borderBottom: " 2px solid #8400ed",
+    paddingBottom: "6px",
+    margin: "5px 0px 15px 0px",
   },
   gridRow: {
-    marginBottom: '15px',
+    marginBottom: "15px",
   },
   loading: {
-    marginBottom: '5px',
+    marginBottom: "5px",
   },
-}));
+}))
 
 const CreateLobby = ({ setLobbies, setLobbyCreating }) => {
-  const classes = useStyles();
+  const classes = useStyles()
   return (
     <Formik
       initialValues={{
-        gameSelect: '',
+        gameSelect: "",
         lobbySize: 2,
-        language: 'English',
-        micPreference: '',
-        lobbyNotes: '',
+        language: "English",
+        micPreference: "",
+        lobbyNotes: "",
       }}
       validationSchema={yup.object({
-        gameSelect: yup.string().required('Required'),
+        gameSelect: yup.string().required("Required"),
         lobbySize: yup
           .number()
           .integer()
-          .required('Required')
-          .min(2, 'Lobby size must be at least 2')
-          .max(10, 'Max lobby size is 10'),
+          .required("Required")
+          .min(2, "Lobby size must be at least 2")
+          .max(10, "Max lobby size is 10"),
         language: yup
           .string()
-          .required('Required')
-          .min(2, 'Must be at least 2 characters')
-          .max(10, 'Must be below 10 characters'),
-        micPreference: yup.string().required('Required'),
+          .required("Required")
+          .min(2, "Must be at least 2 characters")
+          .max(10, "Must be below 10 characters"),
+        micPreference: yup.string().required("Required"),
         lobbyNotes: yup
           .string()
-          .max(130, 'Notes must be 130 characters or less')
-          .required('Required'),
+          .max(130, "Notes must be 130 characters or less")
+          .required("Required"),
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          setLobbyCreating(false);
-          setSubmitting(false);
-          setLobbies((lobbies) => lobbies.concat(values));
-        }, 500);
+          setLobbyCreating(false)
+          setSubmitting(false)
+          setLobbies((lobbies) => lobbies.concat(values))
+        }, 500)
       }}
     >
       {({ submitForm, isSubmitting }) => (
@@ -179,7 +179,7 @@ const CreateLobby = ({ setLobbies, setLobbyCreating }) => {
         </Form>
       )}
     </Formik>
-  );
-};
+  )
+}
 
-export default CreateLobby;
+export default CreateLobby
